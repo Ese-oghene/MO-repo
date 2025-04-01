@@ -1,0 +1,17 @@
+@media (min-width:992px){
+  body{
+      overflow: auto !important;
+  }
+  .offcanvas-backdrop::before{
+      display: none !important;
+  }
+
+  main{
+      margin-left: 270px;
+  }
+  .sidebar-nav {
+      -webkit-transform: none;
+      transform: none !important;
+      visibility: visible !important;
+    }
+}

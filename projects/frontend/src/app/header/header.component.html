@@ -1,0 +1,96 @@
+<!-- <p>header works!</p> -->
+
+<header
+  class="header  py-7"
+  [ngStyle]="{
+    'background': 'black',
+    'background-size': 'cover',
+    'background-position': 'center'
+  }"
+>
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a href="index.html" class="navbar-brand">
+      <img src="../home-img/logo.png" alt="" width="60" height="60"  />
+    </a>
+    <button
+      class="custom-toggler d-lg-none"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#sidebar"
+      aria-controls="sidebar"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+    <!-- <span class="navbar-toggler-icon"></span> -->
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link navlinkedit" aria-current="page" href="#home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link navlinkedit" href="#">Menu</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link navlinkedit" href="#">Faq</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link navlinkedit" href="#">Contact</a>
+        </li>
+
+      </ul>
+      <span class="nav-item">
+        <span class="fa-stack">
+          <a href="#">
+            <i class="fas fa-circle fa-stack-2x"></i>
+            <i class="fab fa-facebook-f fa-stack-1x text-white"></i>
+          </a>
+        </span>
+      </span>
+      <span class="nav-item">
+        <span class="fa-stack">
+          <a href="#">
+            <i class="fas fa-circle fa-stack-2x"></i>
+            <i class="fab fa-twitter fa-stack-1x text-white"></i>
+          </a>
+        </span>
+      </span>
+    </div>
+  </div>
+</nav>
+
+<div class="offcanvas offcanvas-start custom-offcanvas" id="sidebar" tabindex="-1" aria-labelledby="sidebarLabel">
+  <div class="offcanvas-header">
+    <a href="index.html" class="navbar-brand">
+      <img src="../home-img/logo.png" alt="" width="60" height="60"  />
+    </a>
+
+  </div>
+  <div class="offcanvas-body">
+    <ul class="list-unstyled">
+      <li class="mb-2">
+        <a
+          class="d-flex align-items-center justify-content-between text-decoration-none"
+          data-bs-toggle="collapse"
+          href="#homeSubmenu"
+          role="button"
+          aria-expanded="false"
+          aria-controls="homeSubmenu"
+        >
+          Home <i class="fas fa-chevron-down"></i>
+        </a>
+
+      </li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/services">Services</a></li>
+      <li><a href="/contact">Contact</a></li>
+    </ul>
+  </div>
+</div>
+
+<app-hero></app-hero>
+</header>

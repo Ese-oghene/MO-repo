@@ -1,0 +1,45 @@
+.btn1 {
+  background: var(--primary);
+  color: var(--secondary);
+  border-radius: var(--btn-border-radius);
+  padding: var(--btn-padding-y) var(--btn-padding-x);
+}
+
+.btn1:hover {
+  background: var(--secondary);
+  color: var(--primary);
+}
+
+.btn-outline-light {
+  border-radius: var(--btn-border-radius);
+  padding: var(--btn-padding-y) var(--btn-padding-x);
+}
+
+.button-container{
+  display: flex;
+  justify-content: center;
+   gap: 10px;
+}
+
+.header .slide {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.slide-in {
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+.slide-in-right {
+  opacity: 0;
+  transform: translateX(100%);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.slide-in.active,
+.slide-in-right.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+ 

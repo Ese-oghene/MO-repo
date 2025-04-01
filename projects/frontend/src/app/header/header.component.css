@@ -1,0 +1,126 @@
+.navbar-nav .nav-link {
+  color: var(--navbar-dark-color);
+  padding: 0 var(--navbar-nav-link-padding-x);
+}
+
+.custom-toggler {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.custom-toggler .line{
+  height: 3px;
+  width: 100%;
+  background-color: #e5e0e0;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.custom-toggler .line:nth-child(2) {
+  width: 70%;
+  margin-right: auto;
+}
+
+.custom-offcanvas {
+  width: 50%;
+}
+
+.fa-stack i.fa-circle {
+  color: var(--primary);
+}
+
+.btn1 {
+  background: var(--primary);
+  color: var(--secondary);
+  border-radius: var(--btn-border-radius);
+  padding: var(--btn-padding-y) var(--btn-padding-x);
+}
+
+.btn1:hover {
+  background: var(--secondary);
+  color: var(--primary);
+}
+
+.btn-outline-light {
+  border-radius: var(--btn-border-radius);
+  padding: var(--btn-padding-y) var(--btn-padding-x);
+}
+
+.button-container{
+  display: flex;
+  justify-content: center;
+   gap: 10px;
+}
+
+.header .slide {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.slide-in {
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+.slide-in-right {
+  opacity: 0;
+  transform: translateX(100%);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.slide-in.active,
+.slide-in-right.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.navbar {
+  transition: all 0.5s ease-in-out;
+}
+
+@media (max-width: 992px){
+  .navbar{
+    background: var(--bs-dark);
+  }
+
+  .header{
+    height: 800px !important;
+    min-height: 800px !important;
+  }
+
+  .header .slide {
+      width: 90%;
+      margin: 0 auto;
+    }
+
+
+  .header .text-container p{
+      width: 100% !important;
+      font-size: 16px;
+  }
+
+  .register{
+    padding: 40px 0 !important;
+  }
+
+  .register h2{
+    text-align: center;
+  }
+
+}
+
+.navlinkedit:hover{
+  background-color: red;
+}
+
+
+
+

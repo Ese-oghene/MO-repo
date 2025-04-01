@@ -1,0 +1,127 @@
+.navbar .nav-link .badge {
+  position: absolute;
+  font-size: 10px;
+}
+
+.sidebar-link[data-bs-toggle="collapse"]::after {
+  border: solid;
+  border-width: 0 .075rem .075rem 0;
+  content: "";
+  display: inline-block;
+  padding: 2px;
+  position: absolute;
+  right: 1.5rem;
+  top: 1.4rem;
+  transform: rotate(-135deg);
+  transition: all .2s ease-out;
+}
+
+.sidebar-link[data-bs-toggle="collapse"].collapsed::after {
+  transform: rotate(45deg);
+  transition: all .2s ease-out;
+}
+
+.sidebar-link {
+  padding: .625rem 1.625rem;
+  position: relative;
+  display: block;
+  font-size: 1.5rem;
+}
+
+
+.sidebar-logo{
+  padding: 1.15rem;
+}
+
+.sidebar-logo a {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #000;
+}
+
+.sidebarhover:hover {
+  background: var(--primary);
+  color: #fff;
+  transition: all ease 0.25s;
+  border-radius: 0.5rem;
+}
+
+.sidebar-logo a:hover {
+  color: var(--primary);
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+}
+.avatar{
+  width: 40px;
+  height: 40px;
+}
+
+.sidebar-nav  {
+  width: 270px;
+  background: #fff;
+  min-height: 100vh;
+}
+
+.sidebar-link{
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-link .right-icon{
+    display: inline-flex;
+    transition: all ease 0.25s;
+}
+
+.sidebar-link[aria-expanded="true"] .right-icon {
+    transform: rotate(180deg);
+  }
+
+  @media (min-width:992px){
+    /* body{
+        overflow: auto !important;
+    }
+    .offcanvas-backdrop::before{
+        display: none !important;
+    } */
+
+    main{
+        margin-left: 270px;
+    }
+
+    .sidebar-nav {
+        -webkit-transform: none;
+        transform: none !important;
+        visibility: visible !important;
+      }
+}
+
+
+.custom-toggler {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.custom-toggler .line{
+  height: 3px;
+  width: 100%;
+  background-color: var(--primary);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.custom-toggler .line:nth-child(2) {
+  width: 70%;
+  margin-right: auto;
+}

@@ -1,0 +1,38 @@
+.btn1 {
+  background: var(--primary);
+  color: var(--secondary);
+  border-radius: var(--btn-border-radius);
+  padding: var(--btn-padding-y) var(--btn-padding-x);
+}
+
+.card {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+.badge {
+  font-size: 14px;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.card-body h5 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.card-body p {
+  font-size: 14px;
+  color: #6c757d;
+}
