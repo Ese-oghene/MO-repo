@@ -1,8 +1,129 @@
-.avatar {
-  height: 40px;
-  width: 40px;
+.navbar-brand {
+  font-weight: bold;
+  color: #fff;
 }
 
-.navbar-expand .navbar-nav {
-  margin-left: auto;
+.navbar-color{
+  background-color: #3b3c3d;
+  color: #fff;
 }
+
+.navbar-brand:hover {
+  color: var(--primary);
+}
+
+.btn-outline:hover{
+color: #fff;
+  background-color: var(--primary);
+  border-color: var(--primary);
+  transition: all ease 0.25s;
+}
+
+.navbar {
+  margin-left: 250px;
+  transition: all 0.3s ease;
+  z-index: 1040;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  color: #fff;
+}
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0 !important;
+  }
+
+  .navbar {
+    margin-left: 0 !important;
+  }
+}
+
+.sidebar-collapsed .navbar {
+  margin-left: 0;
+}
+
+
+.sidebar-nav  {
+  width: 270px;
+  min-height: 100vh;
+  background-color: #040f13;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  color: #fff;
+}
+
+
+.sidebarhover:hover {
+  background: var(--primary);
+  color: #fff;
+  transition: all ease 0.25s;
+  border-radius: 0.5rem;
+}
+
+.custom-close{
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: #fff;
+  color: #000;
+  border-radius: 50%;
+  padding: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+
+
+.sidebar-link {
+  padding: .625rem 1.625rem;
+  position: relative;
+  display: block;
+  font-style: 1.5rem;
+  text-decoration: none;
+}
+
+.sidebar-link {
+  padding: .625rem 1.625rem;
+  position: relative;
+  display: block;
+}
+
+.navbar-side  a {
+  color: #000;
+  text-decoration: none;
+  display: block;
+  padding: 10px 20px;
+}
+
+.navbar-side  a:hover {
+  background-color:var(--primary);
+}
+
+.custom-toggler {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.custom-toggler .line{
+  height: 3px;
+  width: 100%;
+  background-color: var(--primary);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.custom-toggler .line:nth-child(2) {
+  width: 70%;
+  margin-right: auto;
+}
+
+
+
+
+
+
+
+
+

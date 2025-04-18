@@ -1,18 +1,23 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input,  AfterViewInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })
-export class SidebarComponent {
-  @Input() sidebarCollapsed = false;
-  // sidebarCollapsed = false;
+export class SidebarComponent implements AfterViewInit{
 
+  ngAfterViewInit(): void {
+    const toggleButton = document.getElementById("desktopToggle");
+    const body = document.body;
 
-  // toggleSidebar(): void {
-  //   this.sidebarCollapsed = !this.sidebarCollapsed;
-  // }
+    toggleButton?.addEventListener("click", () => {
+      body.classList.toggle("sidebar-collapsed");
+    });
+
+  }
+
 }

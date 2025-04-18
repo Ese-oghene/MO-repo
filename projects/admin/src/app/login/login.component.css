@@ -1,0 +1,42 @@
+/* Login Section */
+.login-section{
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.login-card{
+  background: var(--login-card-background);
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10px;
+}
+
+.login-logo{
+  width: 60px;
+  height: 60px;
+}
+
+h2{
+  color: var(--h2-color);
+}
+
+.form-control{
+  border-radius: 5px;
+  height: 45px;
+}
+
+.btn-primary{
+  background-color: var(--primary);
+ border: none;
+  height: 45px;
+ border-radius: 5px;
+}
+
+
+.shadow-lg{
+  box-shadow:0 4px 8px rgb(0, 0, 0, 0.2);
+}
+

@@ -1,19 +1,93 @@
-<nav class="navbar navbar-expand px-3  border-bottom" (click)="triggerSidebarToggle()">
-  <button class="btn" id="sidebar-toggle" type="button">
-      <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="navbar-collapse navbar">
-      <ul class="navbar-nav">
-          <li class="nav-item dropdown">
-              <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
-                  <img src="image/profile.jpg" class="avatar img-fluid rounded" alt="">
-              </a>
-              <div class="dropdown-menu dropdown-menu-end">
-                  <a href="#" class="dropdown-item">Profile</a>
-                  <a href="#" class="dropdown-item">Setting</a>
-                  <a href="#" class="dropdown-item">Logout</a>
-              </div>
-          </li>
-      </ul>
+<nav class="navbar navbar-expand-lg navbar-color fixed-top shadow-sm">
+  <div class="container-fluid">
+    <!-- Toggle Button for Mobile -->
+    <button class="btn  custom-toggler d-md-none me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </button>
+
+    <!-- Toggle Sidebar Button for Large Screens -->
+    <button class="btn btn-outline d-none d-md-block me-2" id="desktopToggle">
+      ⮜⮞
+    </button>
+    <a  class="navbar-brand navbar-logo" href="/">MO Signatory</a>
+    <div class="d-flex ms-auto">
+      <img src="https://i.pravatar.cc/40?img=3" class="rounded-circle" alt="User" width="40" height="40">
+    </div>
   </div>
 </nav>
+
+<div class="offcanvas offcanvas-start sidebar-nav d-md-none" tabindex="-1" id="offcanvasSidebar">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title">MO Signatory</h5>
+
+    <button type="button" class="btn-close custom-close btn-close-light" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body p-0">
+    <!-- Same sidebar content used in desktop version -->
+    <div class="navbar-side d-flex flex-column justify-content-between h-100">
+      <ul class="navbar-nav p-3">
+        <li class="sidebar-item fw-bold text-uppercase">Dashboard</li>
+
+        <li class="sidebar-item">
+          <div class="sidebar-link sidebarhover collapsed" data-bs-toggle="collapse" data-bs-target="#product" aria-expanded="false">
+            <i class="fa-solid fa-tags pe-2"></i> Products
+          </div>
+          <ul class="collapse list-unstyled ps-3" id="product">
+            <li><a routerLink="/products" class="sidebar-link">Add Product</a></li>
+            <li><a routerLink="/view-all" class="sidebar-link">View Product</a></li>
+          </ul>
+        </li>
+
+        <li class="sidebar-item">
+          <div class="sidebar-link sidebarhover collapsed" data-bs-toggle="collapse" data-bs-target="#order" aria-expanded="false">
+            <i class="fas fa-cart-shopping pe-2"></i> Orders
+          </div>
+          <ul class="collapse list-unstyled ps-3" id="order">
+            <li><a routerLink="/products" class="sidebar-link">Add Order</a></li>
+            <li><a routerLink="" class="sidebar-link">Manage Order</a></li>
+          </ul>
+        </li>
+
+        <li class="sidebar-item">
+          <div class="sidebar-link sidebarhover collapsed" data-bs-toggle="collapse" data-bs-target="#category" aria-expanded="false">
+            <i class="fas fa-layer-group pe-2"></i> Category
+          </div>
+          <ul class="collapse list-unstyled ps-3" id="category">
+            <li><a routerLink="" class="sidebar-link">Add Category</a></li>
+            <li><a routerLink="" class="sidebar-link">Manage Category</a></li>
+          </ul>
+        </li>
+
+        <li class="sidebar-item">
+          <div class="sidebar-link sidebarhover collapsed" data-bs-toggle="collapse" data-bs-target="#subcategory" aria-expanded="false">
+            <i class="fas fa-layer-group pe-2"></i> Sub-Category
+          </div>
+          <ul class="collapse list-unstyled ps-3" id="subcategory">
+            <li><a routerLink="" class="sidebar-link">Add Sub-Category</a></li>
+            <li><a routerLink="" class="sidebar-link">Manage Category</a></li>
+          </ul>
+        </li>
+
+        <li class="sidebar-item">
+          <div class="sidebar-link sidebarhover collapsed" data-bs-toggle="collapse" data-bs-target="#rawmaterail" aria-expanded="false">
+            <i class="fas fa-layer-group pe-2"></i> Raw Materails
+          </div>
+          <ul class="collapse list-unstyled ps-3" id="rawmaterail">
+            <li><a routerLink="" class="sidebar-link">Add Materails</a></li>
+            <li><a routerLink="" class="sidebar-link">Manage Materails</a></li>
+          </ul>
+        </li>
+      </ul>
+      <div class="p-3 border-light border-top">
+        <a href="#" class="text-white d-flex align-items-center px-3">
+          <i class="fas fa-sign-out-alt me-2"></i> Logout
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

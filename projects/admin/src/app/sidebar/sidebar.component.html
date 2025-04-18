@@ -1,2 +1,97 @@
+<div class="sidebar d-none d-md-flex flex-column justify-content-between">
 
+  <ul class="navbar-nav p-3">
+    <li class="sidebar-item">
+      <div class="fw-bold text-uppercase">
+        Dashboard
+      </div>
+    </li>
+
+    <li class="sidebar-item">
+    <div class="sidebar-link sidebarhover collapsed" data-bs-target="#product" data-bs-toggle="collapse"
+          aria-expanded="false"><i class="fa-solid fa-tags pe-2"></i>
+          Products
+    </div>
+      <ul id="product" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+          <li class="sidebar-item">
+              <a routerLink="/products" class="sidebar-link">Add Products</a>
+          </li>
+          <li class="sidebar-item">
+              <a routerLink="/view-all" class="sidebar-link">View Product</a>
+          </li>
+      </ul>
+  </li>
+
+<li class="sidebar-item">
+  <div href="#" class="sidebar-link sidebarhover collapsed" data-bs-target="#order" data-bs-toggle="collapse"
+        aria-expanded="false"><i class="fas fa-cart-shopping pe-2"></i>
+        Orders
+  </div>
+    <ul id="order" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+        <li class="sidebar-item">
+            <a routerLink="" class="sidebar-link"> Add Orders</a>
+        </li>
+
+        <li class="sidebar-item">
+          <a routerLink="" class="sidebar-link">Manage Orders</a>
+      </li>
+    </ul>
+</li>
+
+<li class="sidebar-item">
+  <div href="#" class="sidebar-link sidebarhover collapsed" data-bs-target="#category" data-bs-toggle="collapse"
+        aria-expanded="false"><i class="fas fa-layer-group pe-2"></i>
+        Categories
+  </div>
+    <ul id="category" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+        <li class="sidebar-item">
+            <a routerLink="" class="sidebar-link"> Add Category </a>
+        </li>
+        <li class="sidebar-item">
+            <a routerLink="" class="sidebar-link">Manage Category </a>
+        </li>
+
+    </ul>
+</li>
+
+<li class="sidebar-item">
+  <div href="#" class="sidebar-link sidebarhover collapsed" data-bs-target="#subcategory" data-bs-toggle="collapse"
+        aria-expanded="false">
+        <i class="fas fa-cubes pe-1"></i>
+        Sub-category
+  </div>
+    <ul id="subcategory" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+        <li class="sidebar-item">
+            <a routerLink="" class="sidebar-link">Add Sub-Category </a>
+        </li>
+        <li class="sidebar-item">
+            <a routerLink="" class="sidebar-link">Manage Sub Category</a>
+        </li>
+    </ul>
+</li>
+
+<li class="sidebar-item">
+  <div href="#" class="sidebar-link sidebarhover collapsed" data-bs-target="#materail" data-bs-toggle="collapse"
+        aria-expanded="false"><i class="fas fa-industry"></i>
+       Raw Materails
+  </div>
+    <ul id="materail" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+        <li class="sidebar-item">
+            <a routerLink="" class="sidebar-link"> Add Materail</a>
+        </li>
+        <li class="sidebar-item">
+            <a routerLink="" class="sidebar-link">Manage all</a>
+        </li>
+
+    </ul>
+</li>
+</ul>
+
+  <div>
+    <hr class="border-light mx-3" />
+    <a href="#" class="d-flex align-items-center px-3">
+      <i class="fas fa-sign-out-alt me-2"></i> Logout
+    </a>
+  </div>
+</div>
 
