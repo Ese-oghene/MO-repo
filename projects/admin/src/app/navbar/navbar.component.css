@@ -82,16 +82,26 @@ color: #fff;
   display: block;
 }
 
-.navbar-side  a {
+/* Target all sidebar links inside collapsible sections */
+ul.collapse a.sidebar-link {
+  color: white !important;
+}
+
+/* Optional: add hover color for better UX */
+ul.collapse a.sidebar-link:hover {
+  color: #ccc !important;
+}
+
+/* .navbar-side  a {
   color: #000;
   text-decoration: none;
   display: block;
   padding: 10px 20px;
-}
+} */
 
-.navbar-side  a:hover {
+/* .navbar-side  a:hover {
   background-color:var(--primary);
-}
+} */
 
 .custom-toggler {
   display: flex;

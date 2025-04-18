@@ -6,31 +6,31 @@
         <div class="col-12 col-md-10 col-lg-8">
           <div class="card shadow-sm">
             <div class="card-body">
-              <h4 class="mb-4">Add New Orders</h4>
-              <form (ngSubmit)="submitProduct()">
+              <h4 class="mb-4">Add New Category</h4>
+              <form >
                 <div class="mb-3">
-                  <label class="form-label">Product Name</label>
-                  <input type="text" class="form-control" [(ngModel)]="product.name" name="name" required>
+                  <label class="form-label">Category Name</label>
+                  <input type="text" class="form-control" name="name" required>
                 </div>
 
                 <div class="mb-3">
                   <label class="form-label">Description</label>
-                  <textarea class="form-control" rows="3" [(ngModel)]="product.description" name="description" required></textarea>
+                  <textarea class="form-control" rows="3" name="description" required></textarea>
                 </div>
 
                 <div class="mb-3">
                   <label class="form-label">Price</label>
-                  <input type="number" class="form-control" [(ngModel)]="product.price" name="price" required>
+                  <input type="number" class="form-control" name="price" required>
                 </div>
 
                 <div class="mb-3">
                   <label class="form-label">Category</label>
-                  <input type="text" class="form-control" [(ngModel)]="product.category" name="category" required>
+                  <input type="text" class="form-control"  name="category" required>
                 </div>
 
                 <div class="mb-3">
                   <label class="form-label">Image URL</label>
-                  <input type="file" class="form-control" [(ngModel)]="product.image" name="image">
+                  <input type="file" class="form-control" name="image">
                 </div>
 
                 <div class="text-end">
@@ -44,4 +44,7 @@
     </div>
 
   </main>
+
+
+
 
