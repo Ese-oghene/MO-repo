@@ -92,17 +92,6 @@ ul.collapse a.sidebar-link:hover {
   color: #ccc !important;
 }
 
-/* .navbar-side  a {
-  color: #000;
-  text-decoration: none;
-  display: block;
-  padding: 10px 20px;
-} */
-
-/* .navbar-side  a:hover {
-  background-color:var(--primary);
-} */
-
 .custom-toggler {
   display: flex;
   flex-direction: column;

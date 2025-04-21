@@ -5,12 +5,12 @@ import { HeroComponent } from "../hero/hero.component";
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, HeroComponent],
+  imports: [CommonModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  backgroundImage = "url('../home-img/header-background.jpg')";
+  backgroundImage = "url('../home-img/232am.png')";
 
   ngOnInit(): void {}
 
