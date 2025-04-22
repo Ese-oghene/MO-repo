@@ -1,0 +1,68 @@
+<section
+  class="cart-section d-flex justify-content-center align-items-center"
+  style="background-image: url('../home-img/232am.png');"
+>
+  <div class="cart-card shadow-lg p-4 rounded w-100">
+    <div class="container py-5">
+      <!-- Section Title -->
+      <div class="section-title text-center mb-4">
+        <h2>Your Shopping Cart</h2>
+      </div>
+
+      <div *ngIf="cartItems.length > 0; else emptyCart">
+        <!-- Cart Table -->
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead class="thead-light">
+              <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of cartItems">
+                <td>
+                  <img [src]="item.image" alt="Product Image" class="cart-img me-2" />
+                  {{ item.name }}
+                </td>
+                <td>{{ item.price | currency }}</td>
+                <td>
+                  <input
+                    type="number"
+                    [(ngModel)]="item.quantity"
+                    class="form-control"
+                    min="1"
+                    (change)="updateCart()"
+                  />
+                </td>
+                <td>{{ item.price * item.quantity | currency }}</td>
+                <td>
+                  <button class="btn btn-danger btn-sm" (click)="removeFromCart(item)">Remove</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Cart Summary -->
+        <div class="d-flex justify-content-end mt-4">
+          <div>
+            <h4>Total: {{ calculateTotal() | currency }}</h4>
+            <button class="btn btn-p">Proceed to Checkout</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Empty Cart Message -->
+      <ng-template #emptyCart>
+        <div class="text-center text-white">
+          <p>Your cart is currently empty.</p>
+          <a routerLink="" class="btn btn-p">Shop Now</a>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</section>

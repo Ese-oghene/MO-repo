@@ -1,0 +1,41 @@
+.product-detail-img {
+  max-height: 400px;
+  object-fit: contain;
+  margin-bottom: 20px;
+}
+
+.product-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.product-price {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.product-description {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+
+.quantity-selector {
+  display: flex;
+  align-items: center;
+}
+
+.quantity-selector input {
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  border: none;
+}
+
+
+
+

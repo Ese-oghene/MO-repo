@@ -1,10 +1,11 @@
+<!-- <p>order works!</p> -->
 <section
   class="signup-section d-flex justify-content-center align-items-center"
   style="background-image: url('../home-img/232am.png');">
   <div class="signup-card shadow-lg p-4 rounded">
     <div class="text-center mb-4">
       <img src="../home-img/Graph.png" alt="Logo" class="signup-logo" />
-      <h2 class="fw-bold">Sign Up</h2>
+      <h2 class="fw-bold">Order Form</h2>
     </div>
     <form (submit)="onSignup()">
       <div class="form-group mb-3">
@@ -14,43 +15,27 @@
           id="name"
           class="form-control"
           placeholder="Enter your full name"
-          [(ngModel)]="name"
           name="name"
           required />
       </div>
       <div class="form-group mb-3">
-        <label for="email" class="form-label">Email Address</label>
+        <label for="" class="form-label">Product Name</label>
         <input
-          type="email"
-          id="email"
+          type="text"
+          id=""
           class="form-control"
-          placeholder="Enter your email"
-          [(ngModel)]="email"
-          name="email"
+          placeholder="Enter the name of the product name"
+          name="product_name"
           required />
       </div>
-
       <div class="form-group mb-3">
-        <label for="password" class="form-label">Password</label>
+        <label for="" class="form-label">Your Address</label>
         <input
-          type="password"
-          id="password"
+          type="text"
+          id=""
           class="form-control"
-          placeholder="Enter your password"
-          [(ngModel)]="password"
-          name="password"
-          required />
-      </div>
-
-      <div class="form-group mb-3">
-        <label for="password" class="form-label">Confirm Password</label>
-        <input
-          type="password"
-          id="password"
-          class="form-control"
-          placeholder="Enter your password"
-          [(ngModel)]="confirmPassword"
-          name="Confirmpassword"
+          placeholder="Enter your address"
+          name="address"
           required />
       </div>
 
@@ -61,16 +46,11 @@
           id="tel"
           class="form-control"
           placeholder="Enter your phone number"
-           [(ngModel)]="phone_no"
           name="phone_no"
           required />
       </div>
-
-      <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+      <button type="submit" class="btn btn-primary w-100">submit</button>
     </form>
-    <div class="text-center mt-3">
-      <p>Already have an account? <a routerLink="/login" class="text-p">Login</a></p>
-    </div>
   </div>
 </section>
 

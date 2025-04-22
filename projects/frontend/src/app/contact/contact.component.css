@@ -1,0 +1,18 @@
+.bi {
+  display: inline-block;
+}
+
+.btn-dan {
+  background: var(--primary);
+  color: #fff;
+}
+
+button:focus {
+  outline: none;
+}
+
+.custom-img {
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+}

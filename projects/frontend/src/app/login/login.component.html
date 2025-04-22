@@ -1,1 +1,49 @@
-<p>login works!</p>
+<section
+class="login-section d-flex justify-content-center align-items-center"
+style="background-image: url('../../home-img/232am.png');">
+<div class="login-card shadow-lg p-4 rounded">
+  <div class="text-center mb-4">
+    <img src="../home-img/Graph.png" alt="Logo" class="login-logo" />
+    <h2 class="fw-bold">Login</h2>
+  </div>
+  <form (submit)="onLogin()">
+    <div class="form-group mb-3">
+      <label for="email" class="form-label">Email Address</label>
+      <input
+        type="email"
+        id="email"
+        class="form-control"
+        placeholder="Enter your email"
+
+        name="email"
+        required />
+    </div>
+    <div class="form-group mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input
+        type="password"
+        id="password"
+        class="form-control"
+        placeholder="Enter your password"
+
+        name="password"
+        required />
+    </div>
+    <div class="form-check mb-3">
+      <input
+        type="checkbox"
+        id="rememberMe"
+        class="form-check-input"
+
+        name="rememberMe"/>
+      <label for="rememberMe" class="form-check-label">Remember Me</label>
+    </div>
+    <button type="submit" class="btn btn-p w-100">Login</button>
+  </form>
+  <div class="text-center mt-3">
+    <p>Don't have an account? <a routerLink="/signup" class="text-pi">Register</a></p>
+  </div>
+</div>
+</section>
+
+
