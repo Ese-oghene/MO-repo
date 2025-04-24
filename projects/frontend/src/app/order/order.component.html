@@ -1,13 +1,13 @@
 <!-- <p>order works!</p> -->
 <section
-  class="signup-section d-flex justify-content-center align-items-center"
+  class="order-section d-flex justify-content-center align-items-center"
   style="background-image: url('../home-img/232am.png');">
-  <div class="signup-card shadow-lg p-4 rounded">
+  <div class="order-card shadow-lg p-4 rounded">
     <div class="text-center mb-4">
       <img src="../home-img/Graph.png" alt="Logo" class="signup-logo" />
       <h2 class="fw-bold">Order Form</h2>
     </div>
-    <form (submit)="onSignup()">
+    <form (submit)="orderNow()">
       <div class="form-group mb-3">
         <label for="name" class="form-label">Full Name</label>
         <input
@@ -15,6 +15,7 @@
           id="name"
           class="form-control"
           placeholder="Enter your full name"
+           [(ngModel)]="name"
           name="name"
           required />
       </div>
@@ -25,6 +26,7 @@
           id=""
           class="form-control"
           placeholder="Enter the name of the product name"
+           [(ngModel)]="product_name"
           name="product_name"
           required />
       </div>
@@ -35,6 +37,7 @@
           id=""
           class="form-control"
           placeholder="Enter your address"
+           [(ngModel)]="address"
           name="address"
           required />
       </div>
@@ -46,6 +49,7 @@
           id="tel"
           class="form-control"
           placeholder="Enter your phone number"
+           [(ngModel)]="phone_no"
           name="phone_no"
           required />
       </div>

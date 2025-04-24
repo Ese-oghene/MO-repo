@@ -1,5 +1,5 @@
 /* Signup Section */
-.signup-section{
+.order-section{
   position:relative;
   min-height: 100vh;
   display: flex;
@@ -13,16 +13,16 @@
 
 /* Add space on smaller screens */
 @media (max-width: 768px) {
-   .signup-card {
+   .order-card {
        margin: 20px 10px;
    }
 
-   .signup-section {
+   .order-section {
        padding: 20px 0;
    }
 }
 
-.signup-section::before{
+.order-section::before{
    content: '';
    position:absolute;
    top: 0;
@@ -33,7 +33,7 @@
    z-index: 1;
 }
 
-.signup-card {
+.order-card {
    position: relative;
    z-index: 2;
    width: 100%;
@@ -42,7 +42,7 @@
    padding: 20px;
 }
 
-.signup-logo{
+.order-logo{
    width: 70px;
    height: 70px;
 }

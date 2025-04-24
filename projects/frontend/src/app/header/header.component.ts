@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { SharedServicesService } from '../../../../shared-services/src/lib/shared-services.service';
 
 @Component({
   selector: 'app-header',
@@ -22,4 +23,19 @@ export class HeaderComponent {
     this.isSidebarOpen = false;
   }
 
+  constructor(private sharedService: SharedServicesService, private router: Router) {}
+
+  logout(): void {
+    this.sharedService.logoutApi().subscribe({
+      next: () => {
+        localStorage.removeItem('token');
+        this.router.navigate(['/login']);
+      },
+      error: (err) => {
+        console.error('Logout API failed', err);
+        localStorage.removeItem('token'); // Still remove token if API fails
+        this.router.navigate(['/login']);
+      }
+    });
+}
 }

@@ -2,6 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { SharedServicesService } from '../../../../shared-services/src/lib/shared-services.service';
 
 
 
@@ -13,9 +16,12 @@ import { RouterModule } from '@angular/router';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+
   email: string = '';
   password: string = '';
   rememberMe: boolean = false;
+
+  constructor(private sharedService: SharedServicesService, private router: Router) {}
 
   onLogin(): void {
     if (!this.email || !this.password) {
@@ -23,12 +29,29 @@ export class LoginComponent {
       return;
     }
 
-    // Simulate login logic
-    console.log('Email:', this.email);
-    console.log('Password:', this.password);
-    console.log('Remember Me:', this.rememberMe);
+    const credentials = {
+      email: this.email,
+      password: this.password,
+    };
 
-    // Redirect to dashboard or homepage after login
-    alert('Login successful!');
+    this.sharedService.login(credentials).subscribe({
+      next: (res) => {
+
+        if(res.token){
+          localStorage.setItem('auth_token', res.token);
+          this.router.navigate(['/dashboard']); // or wherever
+        }
+        alert('Login successful!');
+        console.log(res);
+
+        this.email = '';
+        this.password = '';
+      },
+      error: (err) => {
+        console.error('Login failed', err);
+        alert('Login failed. Please check your credentials.');
+      }
+    });
+
   }
 }
