@@ -6,8 +6,6 @@ import { Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedServicesService } from '../../../../shared-services/src/lib/shared-services.service';
 
-
-
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -36,13 +34,29 @@ export class LoginComponent {
 
     this.sharedService.login(credentials).subscribe({
       next: (res) => {
+        console.log('Login response:', res);
 
-        if(res.token){
-          localStorage.setItem('auth_token', res.token);
-          this.router.navigate(['/dashboard']); // or wherever
+        const token = res.data.token;
+        const user = res.data.user;
+        const role = res.data.role;
+
+        console.log('Token:', token);
+
+        if (token) {
+          localStorage.setItem('auth_token', token);
+          console.log('Token saved to localStorage.');
+
+          if (role === 'admin') {
+            window.location.href = `http://localhost:4300?token=${token}`;
+          } else if (role === 'user') {
+            alert('Hello User.');
+            window.location.href = `http://localhost:4300?token=${token}`;
+          } else {
+            alert('Unknown role. Cannot redirect.');
+          }
+        } else {
+          console.warn('No token received!');
         }
-        alert('Login successful!');
-        console.log(res);
 
         this.email = '';
         this.password = '';
@@ -52,6 +66,7 @@ export class LoginComponent {
         alert('Login failed. Please check your credentials.');
       }
     });
+  }
 
   }
-}
+

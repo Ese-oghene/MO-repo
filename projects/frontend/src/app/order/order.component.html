@@ -9,7 +9,7 @@
     </div>
     <form (submit)="orderNow()">
       <div class="form-group mb-3">
-        <label for="name" class="form-label">Full Name</label>
+        <label for="name" class="form-label">Product Name</label>
         <input
           type="text"
           id="name"
@@ -19,40 +19,82 @@
           name="name"
           required />
       </div>
+
       <div class="form-group mb-3">
-        <label for="" class="form-label">Product Name</label>
+        <label for="emal" class="form-label">Product Description</label>
         <input
           type="text"
-          id=""
+          id="description"
           class="form-control"
-          placeholder="Enter the name of the product name"
-           [(ngModel)]="product_name"
-          name="product_name"
+          placeholder="Enter your full name"
+           [(ngModel)]="description"
+          name="description"
           required />
       </div>
+
+
       <div class="form-group mb-3">
-        <label for="" class="form-label">Your Address</label>
+        <label for="" class="form-label">Category Name</label>
         <input
           type="text"
-          id=""
+          id="category_name"
           class="form-control"
-          placeholder="Enter your address"
-           [(ngModel)]="address"
-          name="address"
+          placeholder="Enter the name of the product name"
+           [(ngModel)]="category_name"
+          name="category_name"
           required />
       </div>
 
       <div class="form-group mb-3">
-        <label for="phone" class="form-label">Phone Number</label>
+        <label for="" class="form-label"> Subcategory Name</label>
         <input
-          type="tel"
-          id="tel"
+          type="text"
+          id="category_name"
           class="form-control"
-          placeholder="Enter your phone number"
-           [(ngModel)]="phone_no"
-          name="phone_no"
+          placeholder="Enter the name of the product name"
+           [(ngModel)]="sub_category_name"
+          name="sub_category_name"
           required />
       </div>
+
+      <div class="form-group mb-3">
+        <label for="" class="form-label">Price</label>
+        <input
+          type="text"
+          id="price"
+          class="form-control"
+          placeholder="Enter the price"
+           [(ngModel)]="price"
+          name="price"
+          required />
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="Stock" class="form-label">Stock</label>
+        <input
+          type="text"
+          id="tel"
+          class="form-control"
+          placeholder="Enter number of stock"
+           [(ngModel)]="stock"
+          name="stock"
+          required />
+      </div>
+
+
+      <div class="form-group mb-3">
+        <label for="Stock" class="form-label"> Image </label>
+        <input
+          type="file"
+          id="tel"
+          class="form-control"
+          placeholder="Enter number of stock"
+           [(ngModel)]="stock"
+          name="stock"
+          required />
+      </div>
+
+
       <button type="submit" class="btn btn-primary w-100">submit</button>
     </form>
   </div>

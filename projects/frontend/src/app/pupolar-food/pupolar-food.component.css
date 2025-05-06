@@ -5,12 +5,6 @@
   padding: var(--btn-padding-y) var(--btn-padding-x);
 }
 
-/* .card {
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease-in-out;
-} */
 
 .card {
   border-radius: 10px;
@@ -43,4 +37,9 @@
 .card-body p {
   font-size: 14px;
   color: #6c757d;
+}
+
+.text-p{
+  color: var(--primary);
+  font-weight: bold;
 }

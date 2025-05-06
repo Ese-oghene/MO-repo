@@ -1,5 +1,8 @@
-import { Component, Input,  AfterViewInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component, Input,  AfterViewInit, OnInit } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
+import { SharedServicesService } from '../../../../shared-services/src/lib/shared-services.service';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-sidebar',
@@ -8,7 +11,7 @@ import { RouterModule } from '@angular/router';
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })
-export class SidebarComponent implements AfterViewInit{
+export class SidebarComponent implements AfterViewInit, OnInit{
 
   ngAfterViewInit(): void {
     const toggleButton = document.getElementById("desktopToggle");
@@ -17,7 +20,19 @@ export class SidebarComponent implements AfterViewInit{
     toggleButton?.addEventListener("click", () => {
       body.classList.toggle("sidebar-collapsed");
     });
-
   }
+
+     user$!: Observable<any>;
+    constructor(private shared: SharedServicesService, private router: Router,) {}
+
+    ngOnInit(): void {
+      this.user$ = this.shared.user$;
+
+    }
+
+    logout() {
+      this.shared.logout();
+      window.location.href = 'http://localhost:4200/login';
+    }
 
 }

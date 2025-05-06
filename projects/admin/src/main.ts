@@ -1,14 +1,13 @@
 import { bootstrapApplication} from '@angular/platform-browser';
-import { withEnabledBlockingInitialNavigation } from '@angular/router'; // ✅ correct
-import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
-import { provideHttpClient } from '@angular/common/http';
+import { appConfig } from './app/app.config';
 
+bootstrapApplication(AppComponent, appConfig);
 
-bootstrapApplication(AppComponent, {
-  ...appConfig,
-  providers: [
-    ...(appConfig.providers || []),
-    provideHttpClient()
-  ]
-});
+// bootstrapApplication(AppComponent, {
+//   ...appConfig,
+//   providers: [
+//     ...(appConfig.providers || []),
+
+//   ]
+// });

@@ -11,6 +11,7 @@ import { ViewCategoryComponent } from './view-category/view-category.component';
 import { AddCategoryComponent } from './add-category/add-category.component';
 import { AddMaterailsComponent } from './add-materails/add-materails.component';
 import { ViewMaterialsComponent } from './view-materials/view-materials.component';
+import { EditProductComponent } from './edit-product/edit-product.component';
 
 
 
@@ -25,6 +26,7 @@ export const routes: Routes = [
   {path: 'add-category', component: AddCategoryComponent},
   {path: 'add-materails', component: AddMaterailsComponent},
   {path: 'view-materials', component: ViewMaterialsComponent},
+  { path: 'edit-product/:id', component: EditProductComponent }
 
 
 ];

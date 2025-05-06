@@ -25,17 +25,17 @@ export class HeaderComponent {
 
   constructor(private sharedService: SharedServicesService, private router: Router) {}
 
-  logout(): void {
-    this.sharedService.logoutApi().subscribe({
-      next: () => {
-        localStorage.removeItem('token');
-        this.router.navigate(['/login']);
-      },
-      error: (err) => {
-        console.error('Logout API failed', err);
-        localStorage.removeItem('token'); // Still remove token if API fails
-        this.router.navigate(['/login']);
-      }
-    });
-}
+//   logout(): void {
+//     this.sharedService.logoutApi().subscribe({
+//       next: () => {
+//         localStorage.removeItem('token');
+//         this.router.navigate(['/login']);
+//       },
+//       error: (err) => {
+//         console.error('Logout API failed', err);
+//         localStorage.removeItem('token');
+//         this.router.navigate(['/login']);
+//       }
+//     });
+// }
 }

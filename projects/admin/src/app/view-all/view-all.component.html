@@ -18,102 +18,40 @@
               <tr>
                 <th scope="col">S/N</th>
                 <th scope="col">Product Name</th>
+                <th scope="col">Description</th>
                 <th scope="col">Category</th>
+                <th scope="col">Sub_category</th>
                 <th scope="col">Price</th>
                 <th scope="col">Stock</th>
+                <th scope="col">Image</th>
+                <th scope="col">Raw Material</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
 
-              <tr>
-                <td>1</td>
-                <td>Sample Product</td>
-                <td>Electronics</td>
-                <td>$99.99</td>
-                <td>25</td>
-                <td><button class="btn btn-danger">Delete</button></td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Another Item</td>
-                <td>Accessories</td>
-                <td>$49.99</td>
-                <td>10</td>
-                <td><button class="btn btn-danger">Delete</button></td>
+
+              <tr *ngFor="let product of products; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.category?.name }}</td>
+                <td>{{ product.sub_category?.name }}</td>
+                <td>${{ product.price }}</td>
+                <td>{{ product.stock }}</td>
+                <td>
+                  <img *ngIf="product.image" [src]="product.image" alt="{{ product.name }}" width="50" />
+                </td>
+
+                <td>{{ product.raw_material }}</td>
+                <td>
+                  <button class="btn btn-primary" [routerLink]="['/edit-product', product.id]">Edit</button>
+                  <button class="btn btn-danger" (click)="deleteProduct(product.id)">Delete</button>
+
+                </td>
+
               </tr>
 
-              <tr>
-                <td>3</td>
-                <td>Another Item</td>
-                <td>Accessories</td>
-                <td>$49.99</td>
-                <td>10</td>
-                <td><button class="btn btn-danger">Delete</button></td>
-              </tr>
-
-              <tr>
-                <td>4</td>
-                <td>Another Item</td>
-                <td>Accessories</td>
-                <td>$49.99</td>
-                <td>10</td>
-                <td><button class="btn btn-danger">Delete</button></td>
-              </tr>
-
-              <tr>
-                <td>5</td>
-                <td>Another Item</td>
-                <td>Accessories</td>
-                <td>$49.99</td>
-                <td>10</td>
-                <td><button class="btn btn-danger">Delete</button></td>
-              </tr>
-
-              <tr>
-                <td>6</td>
-                <td>Another Item</td>
-                <td>Accessories</td>
-                <td>$49.99</td>
-                <td>10</td>
-                <td><button class="btn btn-danger">Delete</button></td>
-              </tr>
-
-              <tr>
-                <td>7</td>
-                <td>Another Item</td>
-                <td>Accessories</td>
-                <td>$49.99</td>
-                <td>10</td>
-                <td><button class="btn btn-danger">Delete</button></td>
-              </tr>
-
-              <tr>
-                <td>8</td>
-                <td>Another Item</td>
-                <td>Accessories</td>
-                <td>$49.99</td>
-                <td>10</td>
-                <td><button class="btn btn-danger">Delete</button></td>
-              </tr>
-
-              <tr>
-                <td>9</td>
-                <td>Another Item</td>
-                <td>Accessories</td>
-                <td>$49.99</td>
-                <td>10</td>
-                <td><button class="btn btn-danger">Delete</button></td>
-              </tr>
-
-              <tr>
-                <td>10</td>
-                <td>Another Item</td>
-                <td>Accessories</td>
-                <td>$49.99</td>
-                <td>10</td>
-                <td><button class="btn btn-danger">Delete</button></td>
-              </tr>
             </tbody>
           </table>
         </div>
@@ -122,3 +60,13 @@
     </div>
   </div>
 
+
+
+              <!-- <tr>
+                <td>1</td>
+                <td>Sample Product</td>
+                <td>Electronics</td>
+                <td>$99.99</td>
+                <td>25</td>
+                <td><button class="btn btn-danger">Delete</button></td>
+              </tr> -->

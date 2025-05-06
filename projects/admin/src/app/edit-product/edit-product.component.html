@@ -6,7 +6,7 @@
         <div class="col-12 col-md-10 col-lg-8">
           <div class="card shadow-sm">
             <div class="card-body">
-              <h4 class="mb-4">Add New Product</h4>
+              <h4 class="mb-4">Edit Product</h4>
               <form (ngSubmit)="submitProduct()">
                 <div class="mb-3">
                   <label class="form-label">Product Name</label>
@@ -40,16 +40,26 @@
                 </div>
 
                 <div class="mb-3">
+                  <label class="form-label">Existing Image</label><br />
+                  <img *ngIf="product.image" [src]="product.image" alt="Product image" width="100" />
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Change Image</label>
+                  <input type="file" class="form-control" (change)="handleImageInput($event)" name="image">
+                </div>
+
+                <!-- <div class="mb-3">
                   <label class="form-label">Image URL</label>
                  <input type="file" class="form-control" (change)="handleImageInput($event)" name="image">
-                </div>
+                </div> -->
                 <div class="mb-3">
                   <label class="form-label">Raw Material</label>
                   <input type="text" class="form-control" [(ngModel)]="product.raw_material" name="image">
                 </div>
 
                 <div class="text-end">
-                  <button type="submit" class="btn btn-red px-4">Add Product</button>
+                  <button type="submit" class="btn btn-red px-4">Submit</button>
                 </div>
               </form>
             </div>
@@ -60,3 +70,4 @@
 
 
   </main>
+
