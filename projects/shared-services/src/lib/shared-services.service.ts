@@ -2,18 +2,18 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable,BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { environment } from '@shared-environment/environment';
+import { User } from '../../../shared-services/src/lib/models/user.model';
+import { Login } from '../../../shared-services/src/lib/models/login.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SharedServicesService {
 
-
-  private baseUrl = 'http://localhost:8000/api';
-
+  private baseUrl = environment.apiBaseUrl;
   private userSubject = new BehaviorSubject<any>(null);
   public user$ = this.userSubject.asObservable();
-
   constructor(private http: HttpClient) {
     this.initializeUser();
   }
@@ -49,35 +49,28 @@ export class SharedServicesService {
   }
 
   //signup user
-  signup(user: {
-    name: string,
-    email: string,
-    password: string,
-    phone_no: string
-  }): Observable<any> {
-    return this.http.post(`${this.baseUrl}/register`, user);
+  signup(user: User): Observable<any> {
+  return this.http.post(`${this.baseUrl}/register`, user);
   }
 
 
   //login user
 
-  login(credentials: {
-    email: string;
-    password: string;
-  }): Observable<any> {
+  login(credentials: Login): Observable<any> {
     return this.http.post(`${this.baseUrl}/login`, credentials);
   }
 
+
   //clear user data first
   clearUser() {
-  this.userSubject.next(null);
-}
+    this.userSubject.next(null);
+  }
 
-logout(): void {
-  const token = localStorage.getItem('auth_token');
-  if (!token) {
-    this.clearUser();
-    return;
+  logout(): void {
+    const token = localStorage.getItem('auth_token');
+    if (!token) {
+      this.clearUser();
+      return;
   }
 
   const headers = new HttpHeaders({
@@ -143,6 +136,7 @@ getPublicProducts(): Observable<any> {
 deleteProduct(productId: number): Observable<any> {
   const token = localStorage.getItem('auth_token');
 
+  //  const headers = this.getHeadersWithAuth();
   const headers = new HttpHeaders({
     'Authorization': `Bearer ${token}`,
     'Accept': 'application/json'

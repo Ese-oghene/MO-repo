@@ -14,7 +14,7 @@ style="background-image: url('../../home-img/232am.png');">
         id="email"
         class="form-control"
         placeholder="Enter your email"
-        [(ngModel)]="email"
+        [(ngModel)]="loginData.email"
         name="email"
         required />
     </div>
@@ -25,7 +25,7 @@ style="background-image: url('../../home-img/232am.png');">
         id="password"
         class="form-control"
         placeholder="Enter your password"
-        [(ngModel)]="password"
+        [(ngModel)]="loginData.password"
         name="password"
         required />
     </div>
@@ -34,7 +34,7 @@ style="background-image: url('../../home-img/232am.png');">
         type="checkbox"
         id="rememberMe"
         class="form-check-input"
-
+        [(ngModel)]="loginData.rememberMe"
         name="rememberMe"/>
       <label for="rememberMe" class="form-check-label">Remember Me</label>
     </div>

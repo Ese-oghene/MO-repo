@@ -22,7 +22,11 @@
       ],
       "shared-styles": [
         "./dist/shared-styles"
-      ]
+      ],
+       "@shared-environment/environment":
+        ["./projects/shared-environment/src/environment"],
+        
+
     },
     "importHelpers": true,
     "target": "ES2022",

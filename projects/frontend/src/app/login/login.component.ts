@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Router, ActivatedRoute} from '@angular/router';
 import { SharedServicesService } from '../../../../shared-services/src/lib/shared-services.service';
+import { Login } from '../../../../shared-services/src/lib/models/login.model';
 
 @Component({
   selector: 'app-login',
@@ -13,15 +14,17 @@ import { SharedServicesService } from '../../../../shared-services/src/lib/share
 })
 export class LoginComponent {
 
-  email: string = '';
-  password: string = '';
-  rememberMe: boolean = false;
+   loginData: Login = {
+    email: '',
+    password: '',
+    rememberMe: false
+  };
 
   constructor(private sharedService: SharedServicesService, private router: Router,
     private route: ActivatedRoute) {}
 
   onLogin(): void {
-    if (!this.email || !this.password) {
+    if (!this.loginData.email || !this.loginData.password ) {
       alert('Please fill out all fields.');
       return;
     }
@@ -29,8 +32,8 @@ export class LoginComponent {
     // const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
     // const redirectTo = this.route.snapshot.queryParamMap.get('returnUrl') || '/order';
     const credentials = {
-      email: this.email,
-      password: this.password,
+      email: this.loginData.email,
+      password: this.loginData.password,
     };
 
     this.sharedService.login(credentials).subscribe({
@@ -62,8 +65,8 @@ export class LoginComponent {
           console.warn('No token received!');
         }
 
-        this.email = '';
-        this.password = '';
+        this.loginData.email = '';
+        this.loginData.password = '';
       },
       error: (err) => {
         console.error('Login failed', err);
