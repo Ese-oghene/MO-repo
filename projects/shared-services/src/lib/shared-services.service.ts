@@ -18,9 +18,35 @@ export class SharedServicesService {
     this.initializeUser();
   }
 
+  //get user data
+  private initializeUser(): void {
+    const url = new URL(window.location.href);
+    const tokenFromUrl = url.searchParams.get('auth_token');
 
+    if (tokenFromUrl) {
+      localStorage.setItem('auth_token', tokenFromUrl);
+      console.log('Token set from query param');
+      window.history.replaceState({}, '', window.location.pathname);
+    }
 
+    const token = localStorage.getItem('auth_token');
+    if (token) {
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
 
+      this.http.get<{ user: any }>(`${this.baseUrl}/me`, { headers })
+        .pipe(tap(res => {this.userSubject.next(res.user);
+          console.log('User role:', res.user.role);
+        }
+
+      ))
+        .subscribe({
+          error: (err) => console.error('Failed to fetch user', err)
+        });
+
+      }
+  }
 
   //signup user
   signup(user: {
@@ -33,39 +59,8 @@ export class SharedServicesService {
   }
 
 
-  private initializeUser(): void {
-    const url = new URL(window.location.href);
-    const tokenFromUrl = url.searchParams.get('token');
-
-    if (tokenFromUrl) {
-      localStorage.setItem('token', tokenFromUrl);
-      console.log('Token set from query param');
-      window.history.replaceState({}, '', window.location.pathname);
-    }
-
-    const token = localStorage.getItem('token');
-    if (token) {
-      const headers = new HttpHeaders({
-        'Authorization': `Bearer ${token}`
-
-      });
-
-      this.http.get<{ user: any }>(`${this.baseUrl}/me`, { headers })
-        .pipe(tap(res => {this.userSubject.next(res.user);
-          console.log('User role:', res.user.role); // Optional log
-        }
-
-      ))
-        .subscribe({
-          error: (err) => console.error('Failed to fetch user', err)
-        });
-
-
-      }
-  }
-
-
   //login user
+
   login(credentials: {
     email: string;
     password: string;
@@ -73,17 +68,15 @@ export class SharedServicesService {
     return this.http.post(`${this.baseUrl}/login`, credentials);
   }
 
-// logout user
-
   //clear user data first
   clearUser() {
   this.userSubject.next(null);
 }
 
 logout(): void {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('auth_token');
   if (!token) {
-    this.clearUser(); // fallback for clients with no token
+    this.clearUser();
     return;
   }
 
@@ -99,7 +92,7 @@ logout(): void {
       console.error('Backend logout failed', err);
     },
     complete: () => {
-      // ✅ Always clean up client state
+
       localStorage.removeItem('token');
       this.clearUser();
     }
@@ -108,7 +101,7 @@ logout(): void {
 
 //add product
 addProduct(product: any): Observable<any> {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('auth_token');
   const headers = new HttpHeaders({
     'Authorization': `Bearer ${token}`,
     'Accept': 'application/json'
@@ -132,7 +125,7 @@ addProduct(product: any): Observable<any> {
 
 // get all products
 getAllProducts(): Observable<any> {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('auth_token');
 
   const headers = new HttpHeaders({
     'Authorization': `Bearer ${token}`
@@ -141,31 +134,41 @@ getAllProducts(): Observable<any> {
   return this.http.get(`${this.baseUrl}/admin/index`, { headers });
 }
 
+// get public products (no token required)
+getPublicProducts(): Observable<any> {
+  return this.http.get(`${this.baseUrl}/products/public`);
+}
+
 // delete product
 deleteProduct(productId: number): Observable<any> {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('auth_token');
 
   const headers = new HttpHeaders({
     'Authorization': `Bearer ${token}`,
     'Accept': 'application/json'
   });
 
+// 3pcencnedvq
   return this.http.delete(`${this.baseUrl}/admin/delete/${productId}`, { headers });
 }
 
-// get product by id
+// get product by id (no token required)
 getProductById(id: number): Observable<any> {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('auth_token');
   const headers = new HttpHeaders({
     'Authorization': `Bearer ${token}`
   });
   return this.http.get(`${this.baseUrl}/admin/show/${id}`, { headers });
 }
 
+// get public product by id (no token required)
+getPublicProductById(id: number): Observable<any> {
+  return this.http.get(`${this.baseUrl}/products/${id}`);
+}
 
 // update product
 updateProduct(id: number, product: any): Observable<any> {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('auth_token');
   const headers = new HttpHeaders({
     'Authorization': `Bearer ${token}`
   });
@@ -187,16 +190,83 @@ updateProduct(id: number, product: any): Observable<any> {
   return this.http.post(`${this.baseUrl}/admin/update/${id}`, formData, { headers });
 }
 
+
+// CART METHODS
+
+addToCart(product: any, quantity: number = 1): void {
+  const cartKey = 'cart';
+  const items = this.getCartItems();
+  const index = items.findIndex((item: any) => item.id === product.id);
+
+  if (index !== -1) {
+    items[index].quantity += quantity;
+  } else {
+    items.push({ ...product, quantity });
+  }
+
+  localStorage.setItem(cartKey, JSON.stringify(items));
 }
 
-//order
-  // submitOrder(data: any): Observable<any> {
-  //   const token = localStorage.getItem('token');
+getCartItems(): any[] {
+  const cartKey = 'cart';
+  const stored = localStorage.getItem(cartKey);
+  return stored ? JSON.parse(stored) : [];
+}
 
-  //   const headers = new HttpHeaders({
-  //     'Authorization': `Bearer ${token}`,
-  //     'Content-Type': 'application/json'
-  //   });
+removeFromCart(productId: number): void {
+  const cartKey = 'cart';
+  const updated = this.getCartItems().filter(item => item.id !== productId);
+  localStorage.setItem(cartKey, JSON.stringify(updated));
+}
 
-  //   return this.http.post(this.baseUrl, data, { headers });
+
+clearCart(): void {
+  localStorage.removeItem('cart');
+}
+
+
+// This service is responsible for managing the order items in the cart
+
+private orderItems: any[] = [];
+
+  setOrder(items: any[]): void {
+    this.orderItems = items;
+    localStorage.setItem('order', JSON.stringify(items)); // Optional for persistence
+  }
+
+  getOrder(): any[] {
+    if (this.orderItems.length === 0) {
+      const stored = localStorage.getItem('order');
+      this.orderItems = stored ? JSON.parse(stored) : [];
+    }
+    return this.orderItems;
+  }
+
+  clearOrder(): void {
+    this.orderItems = [];
+    localStorage.removeItem('order');
+  }
+
+  // Optional: send order to backend
+  placeOrder(orderPayload: any): Observable<any> {
+    const token = localStorage.getItem('auth_token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.post(`${this.baseUrl}/orders`, orderPayload, { headers });
+  }
+
+  // Get products by category name (no auth required)
+  getProductsByCategoryName(categoryName: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/products/category/${encodeURIComponent(categoryName)}`);
+  }
+
+  // Get products by subcategory name (optional)
+  getProductsBySubCategoryName(subCategoryName: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/products/subcategory/${encodeURIComponent(subCategoryName)}`);
+  }
+
+}
 

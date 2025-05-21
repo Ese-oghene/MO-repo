@@ -1,5 +1,5 @@
-<app-navbar></app-navbar>
-<app-sidebar></app-sidebar>
+<!-- <app-navbar></app-navbar> -->
+<!-- <app-sidebar></app-sidebar> -->
 
 <main class="main-content">
 
@@ -208,29 +208,26 @@
 </div>
 
 <ng-template #notAdmin>
-  <div class="alert alert-warning mt-5 text-center">
-    <h2>Access Restricted</h2>
-    <p>You do not have permission to view this page.</p>
+
+  <div class=" mt-5 text-center">
+    <div class="cardd">
+      <img src="../images/bro.png" alt="John" style="width:100%">
+      <h1>{{ (user$ | async)?.name }}</h1>
+      <p class="title">  Welcome, {{ (user$ | async)?.role }} </p>
+      <p>{{ (user$ | async)?.email }}</p>
+      <div style="margin: 24px 0;">
+        <a href=""><i class="fab fa-facebook-f"></i></a>
+        <a href=""><i class="fab fa-twitter"></i></a>
+        <a href=""><i class="fab fa-linkedin-in"></i></a>
+        <a href=""><i class="fab fa-instagram"></i></a>
+
+        <p><button>Contact</button></p>
+      </div>
+
+    </div>
   </div>
+
 </ng-template>
 
 </main>
 
-
-
- <!-- <tr *ngFor="let product of products; let i = index">
-            <td>{{ i + 1 }}</td>
-            <td>{{ product.name }}</td>
-            <td>{{ product.category }}</td>
-            <td>{{ product.price }}</td>
-            <td>{{ product.stock }}</td>
-            <td><button class="btn btn-danger" (click)="deleteProduct(product.id)">Delete</button></td>
-          </tr> -->
-          <!-- <tr *ngFor="let product of products; let i = index">
-            <td>{{ i + 1 }}</td>
-            <td>{{ product.name }}</td>
-            <td>{{ product.category }}</td>
-            <td>{{ product.price }}</td>
-            <td>{{ product.stock }}</td>
-            <td><button class="btn btn-danger" (click)="deleteProduct(product.id)">Delete</button></td>
-          </tr> -->

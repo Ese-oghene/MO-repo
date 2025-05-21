@@ -1,9 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { Router } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { RouterModule, Router, ActivatedRoute} from '@angular/router';
 import { SharedServicesService } from '../../../../shared-services/src/lib/shared-services.service';
 
 @Component({
@@ -19,7 +17,8 @@ export class LoginComponent {
   password: string = '';
   rememberMe: boolean = false;
 
-  constructor(private sharedService: SharedServicesService, private router: Router) {}
+  constructor(private sharedService: SharedServicesService, private router: Router,
+    private route: ActivatedRoute) {}
 
   onLogin(): void {
     if (!this.email || !this.password) {
@@ -27,6 +26,8 @@ export class LoginComponent {
       return;
     }
 
+    // const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+    // const redirectTo = this.route.snapshot.queryParamMap.get('returnUrl') || '/order';
     const credentials = {
       email: this.email,
       password: this.password,
@@ -47,10 +48,13 @@ export class LoginComponent {
           console.log('Token saved to localStorage.');
 
           if (role === 'admin') {
-            window.location.href = `http://localhost:4300?token=${token}`;
+            window.location.href = `http://localhost:4300?auth_token=${token}`;
           } else if (role === 'user') {
             alert('Hello User.');
-            window.location.href = `http://localhost:4300?token=${token}`;
+
+           const redirectTo = this.route.snapshot.queryParamMap.get('returnUrl') || '/order';
+            this.router.navigateByUrl(redirectTo);
+
           } else {
             alert('Unknown role. Cannot redirect.');
           }

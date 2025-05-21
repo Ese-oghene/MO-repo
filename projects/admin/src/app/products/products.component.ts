@@ -34,7 +34,22 @@ export class ProductsComponent {
       next: (res) => {
         console.log('Product added:', res);
         alert('Product added successfully!');
+
+        // Reset the form
+        this.product = {
+          name: '',
+          description: '',
+          category_name:'',
+          sub_category_name: '',
+          price: null,
+          stock:'',
+          image: null,
+          raw_material:''
+        };
       },
+
+
+
       error: (err: HttpErrorResponse) => {
         console.error('Failed to add product:', err);
         alert('Error adding product. Check console.');

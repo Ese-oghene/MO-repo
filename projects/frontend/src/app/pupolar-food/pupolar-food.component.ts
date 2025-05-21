@@ -17,15 +17,27 @@ export class PupolarFoodComponent implements OnInit {
 
   constructor(private sharedService: SharedServicesService) {}
 
+
   ngOnInit(): void {
-    this.sharedService.getAllProducts().subscribe({
+    this.sharedService.getPublicProducts().subscribe({
       next: (res) => {
-        this.products = res.data; // Adjust based on actual API structure
+        this.products = res.data;
       },
       error: (err) => {
-        console.error('Failed to fetch products', err);
+        console.error('Failed to fetch public products', err);
       }
     });
   }
+
+  // ngOnInit(): void {
+  //   this.sharedService.getAllProducts().subscribe({
+  //     next: (res) => {
+  //       this.products = res.data;
+  //     },
+  //     error: (err) => {
+  //       console.error('Failed to fetch products', err);
+  //     }
+  //   });
+  // }
 
 }

@@ -13,6 +13,7 @@
 }
 
 .menu-card {
+  height: 100%; /* Optional, if your grid system supports equal height */
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -27,12 +28,14 @@
 }
 
 .image-container {
+ height: 300px; /* Fixed height */
   position: relative;
   overflow: hidden;
   border-radius: 10px;
 }
 
 .image-container img {
+ object-fit: cover; /*  Ensures the image fills the box without stretching */
   width: 100%;
   border-radius: 10px;
   transition: transform 0.3s ease-in-out;

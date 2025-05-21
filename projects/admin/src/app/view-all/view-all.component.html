@@ -1,7 +1,6 @@
 
 <app-navbar></app-navbar>
-
-  <app-sidebar></app-sidebar>
+<app-sidebar></app-sidebar>
 
   <div class="main-content">
     <div class="container py-2">
@@ -26,6 +25,7 @@
                 <th scope="col">Image</th>
                 <th scope="col">Raw Material</th>
                 <th scope="col">Action</th>
+                <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -44,12 +44,13 @@
                 </td>
 
                 <td>{{ product.raw_material }}</td>
+
                 <td>
                   <button class="btn btn-primary" [routerLink]="['/edit-product', product.id]">Edit</button>
-                  <button class="btn btn-danger" (click)="deleteProduct(product.id)">Delete</button>
-
                 </td>
-
+                <td>
+                  <button class="btn btn-danger" (click)="deleteProduct(product.id)">Delete</button>
+                </td>
               </tr>
 
             </tbody>

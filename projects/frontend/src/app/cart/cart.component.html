@@ -51,7 +51,7 @@
         <div class="d-flex justify-content-end mt-4">
           <div>
             <h4>Total: {{ calculateTotal() | currency }}</h4>
-            <button class="btn btn-p">Proceed to Checkout</button>
+            <button class="btn btn-p" (click)="checkout()" >Proceed to Order</button>
           </div>
         </div>
       </div>
@@ -60,7 +60,7 @@
       <ng-template #emptyCart>
         <div class="text-center text-white">
           <p>Your cart is currently empty.</p>
-          <a routerLink="" class="btn btn-p">Shop Now</a>
+          <a routerLink="/" class="btn btn-p">Shop Now</a>
         </div>
       </ng-template>
     </div>

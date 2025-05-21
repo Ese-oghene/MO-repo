@@ -13,49 +13,41 @@ import { CommonModule } from '@angular/common';
 })
 export class OrderComponent {
 
- // Properties to bind with the form
- name: string = '';
- description: string = '';
- category_name: string = '';
+
+
+
+name: string = '';
+description: string = '';
+category_name: string = '';
  sub_category_name: string = ''
  price: string = '';
  stock: string= '';
 
-  constructor(private sharedService: SharedServicesService, private router: Router) {}
 
-  orderNow() {
-  const token = localStorage.getItem('token');
+   constructor(
+    private sharedService: SharedServicesService,
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {
+    this.sharedService.user$.subscribe(user => {
+      if (!user || user.role !== 'user') {
+        this.router.navigate(['/login'], { queryParams: { returnUrl: '/order' } });
+      }
+    });
+  }
+
+
+
+   orderNow() {
+  const token = localStorage.getItem('auth_token');
   if (!token) {
     this.router.navigate(['/login']);
     return;
   }
 
-  const orderData = {
-    name: this.name,
-    description: this.description,
-    
-    sub_category_name: this.sub_category_name,
-    price: this.price,
-
-  };
-
-  console.log('Order placed:', orderData);
-
-  // Submit order logic here
-  // this.sharedService.submitOrder(orderData).subscribe({
-  //   next: (res) => {
-  //     console.log('Order successful:', res);
-  //     alert('Order placed successfully!');
-
-  //   },
-
-  //   error: (err) => {
-  //     console.error('Order failed:', err);
-  //     alert('Order failed. Please try again.');
-  //   }
-  // });
-
-  }
-
+}
 
 }
+
+

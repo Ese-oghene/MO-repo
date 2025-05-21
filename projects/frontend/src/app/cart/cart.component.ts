@@ -1,50 +1,60 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule, Router } from '@angular/router';
+import { SharedServicesService } from '../../../../shared-services/src/lib/shared-services.service';
 
 
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css'
 })
-export class CartComponent {
+export class CartComponent implements OnInit {
 
-  cartItems = [
-    {
-      name: 'kilishi',
-      image: '../home-img/kilishi.jpeg',
-      price: 1000,
-      quantity: 1
-    },
-    {
-      name: 'kilishi',
-      image: '../home-img/kilishi.jpeg',
-      price: 1200,
-      quantity: 1
-    }
-  ];
+  cartItems: any[] = [];
 
-  // Calculate total price of the cart
-  calculateTotal(): number {
-    return this.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  constructor(
+    private sharedService: SharedServicesService,
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {
+    const storedCart = localStorage.getItem('cart');
+    this.cartItems = storedCart ? JSON.parse(storedCart) : [];
   }
 
-  // Remove an item from the cart
-  removeFromCart(item: any): void {
-    const index = this.cartItems.indexOf(item);
-    if (index > -1) {
-      this.cartItems.splice(index, 1);
-    }
-  }
-
-  // Update the cart when quantity changes
   updateCart(): void {
-    // Logic to handle cart updates, if necessary
+    localStorage.setItem('cart', JSON.stringify(this.cartItems));
   }
 
+  removeFromCart(itemToRemove: any): void {
+    this.cartItems = this.cartItems.filter(item => item.id !== itemToRemove.id);
+    this.updateCart();
+  }
+
+  calculateTotal(): number {
+    return this.cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  }
+
+checkout(): void {
+
+ const token = localStorage.getItem('auth_token');
+
+  if (!token) {
+    // Not logged in – redirect to login with returnUrl
+     this.router.navigate(['/login'], { queryParams: { returnUrl: '/order' } });
+    return;
+  }
+
+  this.sharedService.setOrder(this.cartItems);
+  this.router.navigate(['/order']);
+}
 
 }
+
+
+
