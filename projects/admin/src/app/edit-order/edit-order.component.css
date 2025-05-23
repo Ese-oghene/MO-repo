@@ -1,0 +1,23 @@
+@media (max-width:768px) {
+  .main-content {
+    margin-left: 0 !important;
+
+  }
+}
+
+.main-content {
+  margin-left: 250px;
+  margin-top: 56px;
+  padding: 20px;
+  transition: all 0.3s ease;
+  background: #3b3c3d;
+  min-height: 100vh;
+  overflow-x: hidden;
+  min-height: 100vh;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.btn-red{
+  background: var(--primary);
+  color: #fff;
+}

@@ -262,5 +262,46 @@ private orderItems: any[] = [];
     return this.http.get(`${this.baseUrl}/products/subcategory/${encodeURIComponent(subCategoryName)}`);
   }
 
+  // Get all orders (admin only)
+  getAllOrders(): Observable<any> {
+    const token = localStorage.getItem('auth_token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'application/json'
+    });
+
+    return this.http.get(`${this.baseUrl}/admin/orders`, { headers });
+  }
+
+deleteOrder(orderId: number): Observable<any> {
+  const token = localStorage.getItem('auth_token');
+  const headers = new HttpHeaders({
+    'Authorization': `Bearer ${token}`,
+    'Accept': 'application/json'
+  });
+
+  return this.http.delete(`${this.baseUrl}/admin/orders/${orderId}`, { headers });
+}
+
+
+// Get order by ID (admin only)
+getOrderById(id: number): Observable<any> {
+  const token = localStorage.getItem('auth_token');
+  const headers = new HttpHeaders({
+    'Authorization': `Bearer ${token}`
+  });
+  return this.http.get(`${this.baseUrl}/admin/orders/${id}`, { headers });
+}
+
+updateOrder(id: number, payload: any): Observable<any> {
+  const token = localStorage.getItem('auth_token');
+  const headers = new HttpHeaders({
+    'Authorization': `Bearer ${token}`
+  });
+  return this.http.patch(`${this.baseUrl}/admin/orders/${id}`, payload, { headers });
+}
+
+
+
 }
 
