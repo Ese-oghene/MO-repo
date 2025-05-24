@@ -302,6 +302,18 @@ updateOrder(id: number, payload: any): Observable<any> {
 }
 
 
+downloadUserOrdersPdf(userId: number): Observable<any> {
+  const token = localStorage.getItem('auth_token'); // Adjust this if you use a service for token management
+
+  return this.http.get<{ url: string }>(
+    `${this.baseUrl}/admin/orders/pdf/${userId}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+  );
+}
 
 }
 

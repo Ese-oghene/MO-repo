@@ -23,7 +23,9 @@
                 <th>Quantity</th>
                 <th>Total Price</th>
                 <th>Status</th>
-                <th>Action</th>
+                <th>Action 1</th>
+                <th>Action 2</th>
+                <th>Action 3</th>
               </tr>
             </thead>
             <tbody>
@@ -37,19 +39,16 @@
                 <td>{{ item.quantity }}</td>
                 <td>{{ item.totalPrice | currency }}</td>
                 <td>{{ item.status }}</td>
-
                 <td>
                   <button class="btn btn-sm btn-primary" (click)="onEditOrder(item.orderId)">Edit</button>
+                </td>
+                <td>
                   <button class="btn btn-sm btn-danger ms-2" (click)="onDeleteOrder(item.orderId)">Delete</button>
                 </td>
-
-                <!-- <td>
-                  <button class="btn btn-sm btn-info me-1" (click)="editOrder(item.orderId)">Edit</button>
-                  <button class="btn btn-sm btn-danger" (click)="deleteOrder(item.orderId)">Delete</button>
-                </td> -->
-                <!-- <td>
-                  <button class="btn btn-sm btn-primary">View</button>
-                </td> -->
+                <td>
+                  <button class="btn btn-sm btn-info ms-2" (click)="downloadUserOrdersPdf(item.customerId)">
+                  <i class="fas fa-file-pdf"></i></button>
+                </td>
               </tr>
             </tbody>
           </table>

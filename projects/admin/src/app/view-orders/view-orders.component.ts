@@ -5,6 +5,7 @@ import { SharedServicesService } from '../../../../shared-services/src/lib/share
 import { Order, OrderItem } from '../../../../shared-services/src/lib/models/order.model';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router'; // For navigation
+import { environment } from '@shared-environment/environment';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class ViewOrdersComponent implements OnInit{
   // flatOrderItems: any[] = [];
 
    flatOrderItems: {
+    customerId: number; // 👈 Add this line
     customerName: string;
     customerPhone:string
     productName: string;
@@ -63,6 +65,7 @@ private refreshOrders(): void {
       res.data.forEach((order: Order) => {
         order.order_items.forEach((item: OrderItem) => {
           this.flatOrderItems.push({
+            customerId: order.user?.id || 0, // 👈 Include user ID here
             customerName: order.user?.name || 'N/A',
             customerPhone: order.user?.phone_no || 'N/A',
             productName: item.product?.name || `Product #${item.product_id}`,
@@ -79,5 +82,25 @@ private refreshOrders(): void {
     error: (err) => console.error('Failed to fetch orders', err),
   });
   }
+
+//if you want to implement PDF download functionality
+downloadUserOrdersPdf(userId: number): void {
+  this.sharedService.downloadUserOrdersPdf(userId).subscribe({
+    next: (res) => {
+      const pdfUrl = res?.data?.url; // full absolute URL from backend
+
+      if (pdfUrl) {
+        window.open(pdfUrl, '_blank'); // open pdf in new tab
+      } else {
+        alert('PDF not found');
+      }
+    },
+    error: (err) => {
+      console.error('Error downloading PDF', err);
+      alert('Failed to download PDF');
+    }
+  });
+}
+
 }
 
