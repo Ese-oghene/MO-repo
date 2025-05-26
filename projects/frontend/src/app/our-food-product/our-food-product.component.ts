@@ -19,11 +19,13 @@ export class OurFoodProductComponent{
   constructor(private sharedService: SharedServicesService) {}
 
   ngOnInit(): void {
-    this.sharedService.getProductsByCategoryName('hot sales').subscribe({
+    this.sharedService.getProductsByCategoryName('Beef Jerky').subscribe({
       next: (res) => this.products = res.data,
       error: (err) => console.error('Failed to load Hot Sale products', err)
     });
   }
+
+
 
 }
 

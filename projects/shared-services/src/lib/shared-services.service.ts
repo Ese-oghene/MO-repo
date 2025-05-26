@@ -231,4 +231,27 @@ export class SharedServicesService {
     const headers = this.getAuthHeaders();
     return this.http.get<{ url: string }>(`${this.baseUrl}/admin/orders/pdf/${userId}`, { headers });
   }
+
+  getToken(): string | null {
+  return localStorage.getItem('auth_token');
+}
+
+refreshUser(): void {
+  const token = this.getToken();
+  if (!token) return;
+
+  const headers = this.getAuthHeaders();
+
+  this.http.get<{ user: any }>(`${this.baseUrl}/me`, { headers }).subscribe({
+    next: res => {
+      this.userSubject.next(res.user);
+      console.log('User refreshed:', res.user);
+    },
+    error: err => {
+      console.error('Failed to refresh user after login:', err);
+      this.userSubject.next(null);
+    }
+  });
+}
+
 }

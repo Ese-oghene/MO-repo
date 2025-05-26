@@ -14,20 +14,44 @@ export class PupolarFoodComponent implements OnInit {
 
 
   products: any[] = [];
+  zoboProducts: any[] = [];
 
   constructor(private sharedService: SharedServicesService) {}
 
 
-  ngOnInit(): void {
-    this.sharedService.getPublicProducts().subscribe({
-      next: (res) => {
-        this.products = res.data;
-      },
-      error: (err) => {
-        console.error('Failed to fetch public products', err);
-      }
+    ngOnInit(): void {
+    this.sharedService.getProductsByCategoryName('Banana Cake').subscribe({
+      next: (res) => this.products = res.data,
+      error: (err) => console.error('Failed to load Hot Sale products', err)
     });
-  }
+
+      this.sharedService.getProductsByCategoryName('Zobo Drink').subscribe({
+    next: (res) => this.zoboProducts = res.data,
+    error: (err) => console.error('Failed to load Zobo Drink products', err)
+  });
+}
+
+}
+
+
+  // Zobo Drink
+//   this.sharedService.getProductsByCategoryName('Zobo Drink').subscribe({
+//     next: (res) => this.zoboProducts = res.data,
+//     error: (err) => console.error('Failed to load Zobo Drink products', err)
+//   });
+// }
+
+
+  // ngOnInit(): void {
+  //   this.sharedService.getPublicProducts().subscribe({
+  //     next: (res) => {
+  //       this.products = res.data;
+  //     },
+  //     error: (err) => {
+  //       console.error('Failed to fetch public products', err);
+  //     }
+  //   });
+  // }
 
   // ngOnInit(): void {
   //   this.sharedService.getAllProducts().subscribe({
@@ -40,4 +64,4 @@ export class PupolarFoodComponent implements OnInit {
   //   });
   // }
 
-}
+

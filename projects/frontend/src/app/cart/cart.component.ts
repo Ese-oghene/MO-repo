@@ -40,19 +40,35 @@ export class CartComponent implements OnInit {
     return this.cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   }
 
-checkout(): void {
+// checkout(): void {
 
- const token = localStorage.getItem('auth_token');
+//  const token = localStorage.getItem('auth_token');
+
+//   if (!token) {
+//     this.router.navigate(['/login'], { queryParams: { returnUrl: this.router.url } });
+
+//     return;
+//   }
+
+//   this.sharedService.setOrder(this.cartItems);
+//   this.router.navigate(['/order']);
+// }
+
+checkout(): void {
+  const token = localStorage.getItem('auth_token');
 
   if (!token) {
-    // Not logged in – redirect to login with returnUrl
-     this.router.navigate(['/login'], { queryParams: { returnUrl: '/order' } });
+    // Not logged in – redirect to login, but pass cart in memory via service
+    this.sharedService.setOrder(this.cartItems);
+    this.router.navigate(['/login'], { queryParams: { returnUrl: '/order' } });
     return;
   }
 
+  // Token exists - optionally verify user role or token validity here
   this.sharedService.setOrder(this.cartItems);
   this.router.navigate(['/order']);
 }
+
 
 }
 
