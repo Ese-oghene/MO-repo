@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { SharedServicesService } from '../../../../shared-services/src/lib/shared-services.service';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { environment } from '@shared-environment/environment';
 
 
 
@@ -16,6 +17,8 @@ import { CommonModule } from '@angular/common';
 })
 export class NavbarComponent implements OnInit {
 
+  private frontendBaseUrl = environment.frontendBaseUrl;
+
   @Output() toggleSidebar = new EventEmitter<void>();
 
   triggerSidebarToggle(): void {
@@ -23,7 +26,7 @@ export class NavbarComponent implements OnInit {
   }
 
    user$!: Observable<any>;
-  constructor(private shared: SharedServicesService, private router: Router,) {}
+  constructor( private shared: SharedServicesService, private router: Router,) {}
 
   ngOnInit(): void {
     this.user$ = this.shared.user$;
@@ -32,7 +35,9 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     this.shared.logout();
-    window.location.href = 'http://localhost:4200/login';
+
+     window.location.href = `${this.frontendBaseUrl }/login`;
+    // window.location.href = 'http://localhost:4200/login';
   }
 
 

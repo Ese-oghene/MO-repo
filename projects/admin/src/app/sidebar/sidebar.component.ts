@@ -23,7 +23,7 @@ export class SidebarComponent implements AfterViewInit, OnInit{
   }
 
      user$!: Observable<any>;
-    constructor(private shared: SharedServicesService, private router: Router,) {}
+    constructor( private shared: SharedServicesService, private router: Router,) {}
 
     ngOnInit(): void {
       this.user$ = this.shared.user$;

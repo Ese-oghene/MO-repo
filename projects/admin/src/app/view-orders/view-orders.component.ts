@@ -32,7 +32,7 @@ export class ViewOrdersComponent implements OnInit{
     orderId: number;
   }[] = [];
 
-  constructor(private sharedService: SharedServicesService,  private router: Router) {}
+  constructor( private sharedService: SharedServicesService,  private router: Router) {}
 
   onEditOrder(orderId: number): void {
   this.router.navigate(['/admin/edit-order', orderId]); // Make sure this route exists
