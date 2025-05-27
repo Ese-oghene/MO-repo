@@ -1,5 +1,4 @@
-<!-- <p>order works!</p> -->
-<section
+<!-- <section
   class="order-section d-flex justify-content-center align-items-center"
   style="background-image: url('../home-img/232am.png');">
   <div class="order-card shadow-lg p-4 rounded">
@@ -98,5 +97,59 @@
       <button type="submit" class="btn btn-primary w-100">submit</button>
     </form>
   </div>
-</section>
+</section> -->
 
+<!-- <div class="order-container">
+  <h2>Your Order</h2>
+
+  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+  <div *ngIf="successMessage" class="success">{{ successMessage }}</div>
+
+  <div *ngIf="cartItems.length">
+    <ul>
+      <li *ngFor="let item of cartItems">
+        {{ item.name }} - Quantity: {{ item.quantity }}
+      </li>
+    </ul>
+
+    <button (click)="orderNow()" [disabled]="loading">
+      {{ loading ? 'Placing Order...' : 'Place Order' }}
+    </button>
+  </div>
+</div> -->
+
+
+<section
+  class="order-section d-flex justify-content-center align-items-center"
+  style="background-image: url('../home-img/232am.png');">
+  <div class="order-card shadow-lg p-4 rounded">
+    <div class="text-center mb-4">
+      <img src="../home-img/Graph.png" alt="Logo" style="height: 50px; width:50px;" class="signup-logo" />
+      <h2 class="fw-bold">Your Order</h2>
+    </div>
+
+    <div *ngIf="errorMessage" class="alert alert-danger text-center">
+      {{ errorMessage }}
+    </div>
+    <div *ngIf="successMessage" class="alert alert-success text-center">
+      {{ successMessage }}
+    </div>
+
+    <div *ngIf="cartItems.length; else noItems">
+      <ul class="list-group mb-3">
+        <li *ngFor="let item of cartItems" class="list-group-item d-flex justify-content-between align-items-center">
+          {{ item.name }}
+          <span>Qty: {{ item.quantity }}</span>
+        </li>
+      </ul>
+
+      <button class="btn btn-primary w-100" (click)="orderNow()" [disabled]="loading">
+        {{ loading ? 'Placing Order...' : 'Place Order' }}
+      </button>
+    </div>
+
+    <ng-template #noItems>
+      <p class="text-center text-muted">Your cart is empty.</p>
+    </ng-template>
+  </div>
+</section>

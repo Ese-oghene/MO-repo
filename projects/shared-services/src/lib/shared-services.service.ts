@@ -254,4 +254,13 @@ refreshUser(): void {
   });
 }
 
+getUserOrders(): Observable<any> {
+  const headers = this.getAuthHeaders().set('Accept', 'application/json');
+  return this.http.get(`${this.baseUrl}/orders/user`, { headers });
+}
+
+// getUserOrders() {
+//   return this.http.get(`${this.baseUrl}/orders`);
+// }
+
 }
